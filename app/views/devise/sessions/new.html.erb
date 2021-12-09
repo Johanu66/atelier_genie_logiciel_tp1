@@ -1,11 +1,11 @@
 <% content_for :head do %>
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.css">
-  <%= stylesheet_link_tag    'login.css' %>
 <% end %>
-<div class="container">
+
+<div style="height: 100vh;" class="container d-flex justify-content-center align-content-center">
   <div class="row">
     <div class="Absolute-Center is-Responsive">
-      <div id="logo-container"></div>
+      <div><h2 class="text-center">Log in</h2></div>
       <div class="col-sm-12 col-md-10 col-md-offset-1">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: "loginForm" }) do |f| %>
           <div class="form-group input-group">
@@ -17,7 +17,7 @@
             <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Password" %>    
           </div>
           <% if devise_mapping.rememberable? %>
-            <div class="checkbox">
+            <div class="">
               <label>
                 <%= f.check_box :remember_me %> <%= f.label :remember_me %>
               </label>

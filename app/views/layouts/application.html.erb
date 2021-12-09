@@ -11,8 +11,32 @@
 
   <%= yield :head %>
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    
+    <div id="main">
+      <div class="container_menu">
+        <nav>
+          <div class="nav-fostrap d-flex justify-content-center">
+            <ul class="px-md-5">
+              <li><%= link_to "Home", root_path %></li>
+              <% if current_user %>
+                <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Log in", new_user_session_path %></li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="nav-bg-fostrap">
+            <div class="navbar-fostrap"><span></span> <span></span> <span></span></div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <% if notice %>
+      <script>swal("SUCCESS", "<%= notice %>".split("&#39;").join("'"),"success")</script>
+    <% end %>
+    <% if alert %>
+      <script>swal("WARNING", "<%= alert %>".split("&#39;").join("'"), "warning")</script>
+    <% end %>
     <%= yield %>
   </body>
 </html>

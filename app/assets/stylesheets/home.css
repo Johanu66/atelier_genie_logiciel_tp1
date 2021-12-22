@@ -5863,7 +5863,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, a, .td
         }
 
         .title-brand {
-        max-width: 730px;
+        max-width: 100%;
         margin: 0 auto;
         position: relative;
         text-align: center;

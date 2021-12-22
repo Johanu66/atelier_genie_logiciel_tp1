@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_22_084520) do
+ActiveRecord::Schema.define(version: 2021_12_22_092652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 2021_12_22_084520) do
     t.string "time_slot"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "hourly_id"
+    t.bigint "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hourly_id"], name: "index_reservations_on_hourly_id"
+    t.index ["room_id"], name: "index_reservations_on_room_id"
+    t.index ["teacher_id"], name: "index_reservations_on_teacher_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -64,5 +75,8 @@ ActiveRecord::Schema.define(version: 2021_12_22_084520) do
 
   add_foreign_key "availabilities", "hourlies"
   add_foreign_key "availabilities", "rooms"
+  add_foreign_key "reservations", "hourlies"
+  add_foreign_key "reservations", "rooms"
+  add_foreign_key "reservations", "teachers"
   add_foreign_key "teachers", "users"
 end

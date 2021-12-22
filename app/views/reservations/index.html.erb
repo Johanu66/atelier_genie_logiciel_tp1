@@ -8,7 +8,7 @@
   </style>
 <% end %>
 
-<h2 style="margin-top: 100px;" class="mx-5">Availabilities</h2>
+<h2 style="margin-top: 100px;" class="mx-5">Reservations</h2>
 <div class="p-lg-5">
     <table id="example" class="table table-striped table-bordered text-center" cellspacing="0">
         <thead>
@@ -21,14 +21,14 @@
             </tr>
         </thead>
         <tbody>
-        <% @availabilities.each do |availability| %>
+        <% @reservations.each do |reservation| %>
             <tr>
-                <td><%= availability.room.name %></td>
-                <td><%= availability.room.location %></td>
-                <td><%= availability.hourly.day %></td>
-                <td><%= availability.hourly.time_slot %></td>
+                <td><%= reservation.room.name %></td>
+                <td><%= reservation.room.location %></td>
+                <td><%= reservation.hourly.day %></td>
+                <td><%= reservation.hourly.time_slot %></td>
                 <td>
-                    <%= link_to "Reserve", reservation_path(availability), class: "btn btn-primary" %>
+                    <%= link_to "Cancel", new_reservations_path(reservation), method: :delete, class: "btn btn-danger" %>
                 </td>
             </tr>
         <% end %>

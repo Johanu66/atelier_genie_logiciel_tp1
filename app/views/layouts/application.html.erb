@@ -19,6 +19,7 @@
             <ul class="px-md-5">
               <li><%= link_to "Home", root_path %></li>
               <% if current_user %>
+                <li><%= link_to "Availabilities", availabilities_path %></li>
                 <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
               <% else %>
                 <li><%= link_to "Log in", new_user_session_path %></li>

@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_03_155655) do
+ActiveRecord::Schema.define(version: 2021_12_22_084520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "hourly_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hourly_id"], name: "index_availabilities_on_hourly_id"
+    t.index ["room_id"], name: "index_availabilities_on_room_id"
+  end
+
+  create_table "hourlies", force: :cascade do |t|
+    t.string "day"
+    t.string "time_slot"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "teachers", force: :cascade do |t|
     t.string "speciality"
@@ -39,5 +62,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_155655) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "availabilities", "hourlies"
+  add_foreign_key "availabilities", "rooms"
   add_foreign_key "teachers", "users"
 end
